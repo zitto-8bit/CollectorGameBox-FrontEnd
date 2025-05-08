@@ -1,4 +1,5 @@
 export const environment = {
-    baseUrl: 'http://localhost:8080/CollectorGameBox',
+    baseUrl: 'https://semantic-lianna-zitto-8bit-4abbe9d9.koyeb.app/CollectorGameBox',
+    //baseUrl: 'http://localhost:8080/CollectorGameBox',
     production: false
 };
