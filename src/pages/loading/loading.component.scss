@@ -2,13 +2,12 @@
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 60vh;
-  background-color: #0f172a; // ou o fundo que desejar
+  height: 80vh;
 }
 
 .spinner {
-  border: 6px solid #333;
-  border-top: 6px solid #00ffff;
+  border: 3px solid #33333385;
+  border-top: 6px solid #fff;
   border-radius: 50%;
   width: 60px;
   height: 60px;

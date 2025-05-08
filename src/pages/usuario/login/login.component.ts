@@ -14,6 +14,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatInputModule } from '@angular/material/input';
 import { fadeInOut } from '../../../animations/animations';
 import { HeaderComponent } from '../../home/header/header.component';
+import { LoadingComponent } from '../../loading/loading.component';
 
 @Component({
   selector: 'app-login',
@@ -24,12 +25,14 @@ import { HeaderComponent } from '../../home/header/header.component';
     RouterModule,
     MatFormFieldModule,
     MatInputModule,
-    HeaderComponent],
+    HeaderComponent,
+    LoadingComponent],
   animations: [fadeInOut]
 })
 export class LoginComponent {
   loginForm: FormGroup;
-  loginInvalido: boolean = false; 
+  loginInvalido: boolean = false;
+  loading: boolean = false;
 
   constructor(private fb: FormBuilder,
               private router: Router,
@@ -41,12 +44,15 @@ export class LoginComponent {
   }
 
   onSubmit() {
+    this.loading = true;
     const dadosLogin: LoginDTO = this.loginForm.value;
     this.auth.logar(dadosLogin).subscribe({
       next: () => {
+        this.loading = false;
         this.router.navigate(['/inicio']);
       },
       error: (err) => {
+        this.loading = false;
         const validationErrorResponse: ValidationErrorResponse = err.error;
         const erros = validationErrorResponse.erros;
 

@@ -1,6 +1,6 @@
 <app-header style="z-index: 1; position: relative;"></app-header>
 <div class="main-container">
-  <div class="form-container" [@fadeInOut]>
+  <div class="form-container" *ngIf="!loading">
     <h2>Login</h2>
     <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
       <div class="input-box">
@@ -38,3 +38,4 @@
     </div>
   </div>
 </div>
+<app-loading *ngIf="loading"></app-loading>
