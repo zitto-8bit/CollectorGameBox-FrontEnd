@@ -1,0 +1,27 @@
+<app-header></app-header>
+<div [@listStagger]="animacaoKey" class="admin-container">
+  <h2>Jogos Pendentes de Ativação</h2>
+  <div *ngIf="games.length === 0">Nenhum jogo pendente.</div>
+
+  <div *ngFor="let jogo of games" class="jogo-card">
+    <img [src]="'data:image/jpeg;base64,' + jogo.imageBase64" alt="{{ jogo.name }}" />
+    <div class="jogo-info">
+      <h3>{{ jogo.name }}</h3>
+      <p><strong>Plataforma:</strong> {{ jogo.plataform }}</p>
+      <p><strong>Sinopse:</strong> {{ jogo.synopsis }}</p>
+      <p><strong>Adulto:</strong> {{ jogo.adult ? 'Sim' : 'Não' }}</p>
+      
+      <div class="categorias">
+        <strong>Categorias:</strong>
+        <ul>
+          <li *ngFor="let cat of jogo.categories">{{ cat.name }}</li>
+        </ul>
+      </div>
+
+      <div class="botoes">
+        <button (click)="aprovarJogo(jogo)" class="aprovar">Aprovar</button>
+        <button class="reprovar">Reprovar</button>
+      </div>
+    </div>
+  </div>
+</div>

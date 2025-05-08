@@ -1,0 +1,489 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+.game-detail-container {
+  background-color: #0b1120;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  width: 100%;
+  padding-bottom: 5%;
+}
+
+.voltar {
+  display: flex;
+  align-items: center;
+  width: 135px;
+  margin-top: 35px;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: translateX(-10px) scale(1.05);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+
+  img {
+    width: 56px;
+  }
+
+  h3 {
+    font-size: 12px;
+  }
+}
+
+.comentarios-laterais {
+  width: 375px;
+  max-height: 85vh;
+  overflow-y: auto;
+  background-color: #1e293b;
+  margin-left: 2rem;
+  padding: 1rem;
+  border-radius: 1rem;
+  border: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  color: #f8fafc;
+  font-family: "Press Start 2P", monospace;
+}
+
+.titulo-comentarios {
+  font-size: 0.85rem;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.comentarios-lista {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.comentario-publico {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.75rem;
+}
+
+.avatar-publico {
+  width: 56px;
+  height: 56px;
+  border-radius: 50%;
+  object-fit: cover;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &:active {
+    transform: translateY(2px);
+  }
+}
+
+.comentario-publico-conteudo {
+  background-color: #0f172a;
+  border: 1px solid #334155;
+  padding: 0.75rem;
+  border-radius: 0.5rem;
+  flex: 1;
+
+  .comentario-nome-nota {
+    display: flex;
+    flex-direction: row;
+    align-items: baseline;
+    justify-content: space-between;
+    margin-top: -15px;
+  }
+}
+
+.nome-publico {
+  font-size: 0.65rem;
+  font-weight: bold;
+  margin-bottom: 0.4rem;
+  color: #f8fafc;
+}
+
+.texto-publico {
+  font-size: 0.7rem;
+  color: #cbd5e1;
+  line-height: 1.4;
+  word-break: break-word;
+  white-space: pre-wrap;
+}
+
+.avatar-selecionado {
+  border-radius: 50%;
+}
+
+.game-card {
+  background-color: #1e293b;
+  border-radius: 1rem;
+  padding: 2rem;
+  max-width: 900px;
+  width: 100%;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
+  color: #f8fafc;
+  font-family: "Press Start 2P", monospace;
+}
+
+.game-content {
+  display: flex;
+  gap: 2rem;
+  align-items: flex-start;
+}
+
+.game-image {
+  width: 300px;
+  height: auto;
+  border-radius: 0.5rem;
+  object-fit: cover;
+  flex-shrink: 0;
+}
+
+.game-icon {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  width: 80px;
+  height: 80px;
+  z-index: 10;
+  cursor: pointer;
+
+  &:hover {
+    transform: scale(1.15);
+  }
+
+  &:active {
+    transform: translateY(1px);
+  }
+}
+
+.game-info-section {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; // centraliza verticalmente o conteúdo interno
+}
+
+.game-title {
+  font-size: 1.3rem;
+  margin: 0 0 1rem;
+}
+
+.game-subtitle {
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 1rem;
+}
+
+.game-synopsis {
+  font-size: 0.85rem;
+  color: #cbd5e1;
+  margin-bottom: 1.5rem;
+  margin-top: 1.5rem;
+  text-align: center;
+  line-height: 1.4;
+}
+
+.game-info {
+  font-size: 0.75rem;
+  background-color: #0f172a;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #334155;
+}
+
+.game-coment {
+  font-size: 0.75rem;
+  background-color: #0f172a;
+  padding: 1rem;
+  border-radius: 0.5rem;
+  border: 1px solid #334155;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .comentario-container {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    .comentario {
+      display: flex;
+      align-items: flex-start;
+      gap: 1rem;
+      margin-top: 10px;
+      background-color: #0f172a;
+      padding: 1rem;
+      border-radius: 0.5rem;
+      max-width: 80%;
+
+      .comentario-input {
+        width: 100%;
+        overflow: hidden;
+        padding: 0.5rem;
+        font-family: inherit;
+        border-radius: 6px;
+        border: 1px solid #334155;
+        background-color: #0f172a;
+        color: #f8fafc;
+        resize: none;
+        line-height: 1.5;
+        box-sizing: border-box;
+        font-size: 0.8rem;
+        margin-top: 8px;
+        margin-bottom: 15px;
+      }
+
+      .salvar-btn {
+        background-color: #66ff66;
+        color: #0b1120;
+        padding: 0.3rem 0.75rem;
+        border: none;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        transition: background-color 0.3s;
+      }
+
+      .salvar-btn:hover {
+        background-color: #22c55e;
+      }
+
+      .limite-msg {
+        font-size: 0.7rem;
+        color: #ff4d4d;
+        margin-top: 0.8rem;
+        text-align: center;
+      }
+    }
+
+    .editar {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      margin-left: 10px;
+      max-width: 80%;
+
+      p {
+        font-size: 0.65rem;
+        text-align: center;
+      }
+
+      button {
+        background-color: #0f172a;
+        border-radius: 0.5rem;
+        border: 1px solid #334155;
+        height: 50%;
+        cursor: pointer;
+
+        &:hover {
+          transform: scale(1.03);
+        }
+      }
+    }
+
+    .user-avatar {
+      width: 70px;
+      height: 70px;
+      border-radius: 50%;
+      object-fit: cover;
+    }
+
+    .comentario-conteudo {
+      flex: 1;
+      max-width: 100%;
+      width: 100%;
+    }
+
+    .user-nome {
+      font-size: 0.85rem;
+      font-weight: bold;
+      color: #f8fafc;
+      margin-bottom: 0.25rem;
+    }
+
+    .comentario-texto {
+      font-size: 0.8rem;
+      color: #cbd5e1;
+      line-height: 1.4;
+      word-break: break-word;
+      white-space: pre-wrap;
+      width: 100%;
+      box-sizing: border-box;
+      background-color: #0f172a;
+      border: 1px solid #334155;
+      padding: 0.5rem;
+      border-radius: 6px;
+    }
+  }
+}
+
+.game-rating {
+  display: flex;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+.star-icon {
+  font-size: 1.5rem;
+  color: #cccccc73; /* Cor para estrelas não preenchidas */
+  margin-right: 5px;
+  cursor: pointer; /* Mostrar que as estrelas são clicáveis */
+
+  &:hover {
+    transform: scale(1.2);
+  }
+
+  &:active {
+    transform: translateY(-2px);
+  }
+}
+
+.star-icon-total {
+  font-size: 1.5rem;
+  color: #ccc; /* Cor para estrelas não preenchidas */
+  margin-right: 5px;
+}
+
+.star-icon-comment {
+  font-size: 0.9rem;
+  color: #999898a2; /* Cor para estrelas não preenchidas */
+  margin-right: 5px;
+}
+
+.star-icon.checked {
+  color: #f3d270; /* Cor para estrelas preenchidas */
+}
+
+.star-icon-comment.checked {
+  color: #f7df99; /* Cor para estrelas preenchidas */
+}
+
+.star-icon-total.checked {
+  color: gold; /* Cor para estrelas preenchidas */
+}
+
+@media screen and (max-width: 600px) {
+  .game-content {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+  }
+
+  .game-image {
+    width: 100%;
+    max-width: 280px;
+  }
+
+  .game-info-section {
+    width: 100%;
+    align-items: center;
+    text-align: center;
+  }
+
+  .game-title {
+    font-size: 1.2rem;
+  }
+
+  .game-subtitle,
+  .game-synopsis,
+  .game-info,
+  .game-coment {
+    font-size: 0.7rem;
+    width: 100%;
+  }
+
+  .comentario-container {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 1rem;
+  }
+
+  .comentario {
+    flex-direction: column;
+    align-items: center;
+    max-width: 100%;
+    width: 100%;
+    padding: 1rem 0.5rem;
+  }
+
+  .comentario-input,
+  .comentario-texto {
+    font-size: 0.75rem;
+  }
+
+  .editar {
+    width: 100%;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-top: 0.5rem;
+  }
+
+  .user-nome {
+    font-size: 0.75rem;
+  }
+
+  .star-icon {
+    font-size: 1.2rem;
+  }
+
+  .game-rating {
+    flex-direction: column;
+    gap: 0.5rem;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .game-detail-container {
+    flex-direction: column;
+    padding: 1rem;
+  }
+
+  .comentarios-laterais {
+    order: 2;
+    width: 100%;
+    margin: 2rem 0 0 0;
+  }
+
+  .game-card {
+    order: 1;
+    width: 100%;
+    padding: 1.5rem;
+  }
+
+  .popover-retro {
+    position: fixed;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    margin: 0;
+    width: 80%;
+    max-width: 280px;
+    z-index: 100;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .game-title {
+    font-size: 1rem;
+  }
+
+  .game-subtitle,
+  .game-synopsis,
+  .game-info,
+  .game-coment,
+  .comentario-input,
+  .comentario-texto {
+    font-size: 0.65rem;
+  }
+
+  .star-icon {
+    font-size: 1rem;
+  }
+}

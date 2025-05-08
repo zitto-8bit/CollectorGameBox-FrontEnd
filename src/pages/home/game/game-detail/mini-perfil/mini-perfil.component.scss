@@ -1,0 +1,94 @@
+.mini-perfil {
+  position: absolute;
+  background-color: #0f172a;
+  padding: 1rem;
+  border: 1px solid #334155;
+  z-index: 1000;
+  border-radius: 12px;
+  font-family: "Press Start 2P", monospace;
+  color: #f8fafc;
+  font-size: 0.85rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+  width: auto;
+}
+
+.head-user {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+  gap: 15px;
+}
+
+.mini-perfil-img {
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.mini-perfil p {
+  font-size: 0.85rem;
+  font-weight: bold;
+  margin-top: 0.5rem;
+  color: #f8fafc; /* Cor do texto clara */
+  line-height: 1.2;
+}
+
+.mini-perfil .info {
+  p {
+    max-width: 350px;
+    font-size: 10px;
+    color: #cbd5e1; /* Cor mais suave para as informações adicionais */
+    margin-top: 0.3rem;
+    text-align: center;
+    word-break: break-word;
+  }
+}
+
+.jogos-wrapper {
+  overflow: hidden;
+  max-width: 100%;
+  padding: 12px 0;
+  position: relative;
+}
+
+.jogos-empilhados {
+  position: relative;
+  height: 110px;
+  width: max-content;
+  perspective: 800px;
+}
+
+.jogo-capa {
+  position: absolute;
+  top: 0;
+  width: 65px;
+  height: 95px;
+  border: 2px solid #334155;
+  border-radius: 4px;
+  transition: transform 0.3s, box-shadow 0.3s;
+  object-fit: cover;
+  transform-style: preserve-3d;
+  box-shadow: 3px 3px 6px rgba(0, 0, 0, 0.4);
+  background-color: #1e293b;
+  overflow: hidden;
+}
+
+.jogo-capa::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, #475569, #1e293b);
+  z-index: 1;
+}
+
+.jogo-capa:hover {
+  transform: translateY(-10px) ;
+  box-shadow: 5px 10px 14px rgba(0, 0, 0, 0.6);
+  z-index: 999 !important;
+}

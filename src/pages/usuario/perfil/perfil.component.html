@@ -1,0 +1,26 @@
+<div class="main-container">
+    <div class="profile-container">
+        <button class="close-btn" [routerLink]="['/inicio']">✖</button>
+
+        <h2>PERFIL GAMER</h2>
+
+        <div class="icon-user">
+            <img *ngIf="!selectedIcon" id="avatarPreview" class="preview" [src]="'data:image/png;base64,' + this.usuario!.icone" alt="Avatar escolhido">
+            <img *ngIf="selectedIcon" id="avatarPreview" class="preview" [src]="selectedIcon" alt="Avatar escolhido">
+        </div>
+
+        <div class="avatar-selection" id="avatarList">
+            <img *ngFor="let icon of icons; let i = index" class="avatar" [src]="icon" [alt]="icon"
+                [class.selected]="selectedIcon === icon" (click)="selecionarAvatar(icon)" />
+        </div>
+
+        <input type="text" id="nome" maxlength="30" [(ngModel)]="alteracaoUsuario!.nome" placeholder="NOME DE GUERRA">
+        <textarea id="biografia" [(ngModel)]="alteracaoUsuario!.biografia" placeholder="BIOGRAFIA" maxlength="200" (input)="autoResize($event)">
+        </textarea>
+
+        <div style="display: flex; flex-direction: row; justify-content: space-between;">
+            <button class="save-btn" style="background-color: #ff4d4d; color: #fff;" (click)="desconectar()">DESCONECTAR</button>
+            <button class="save-btn" (click)="salvarPerfil()">SALVAR PERFIL</button>
+        </div>
+    </div>
+</div>

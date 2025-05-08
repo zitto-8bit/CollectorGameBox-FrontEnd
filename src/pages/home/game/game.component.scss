@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+.catalog {
+  padding: 2rem;
+  min-height: 100vh;
+  background-color: #0f172a;
+  max-width: 100%;
+
+  h1 {
+    text-align: center;
+    margin-bottom: 2rem;
+    color: #ffffff;
+    font-size: 2rem;
+    font-weight: bold;
+    font-family: 'Press Start 2P', cursive;
+
+    .icon {
+      width: 35px;
+      height: 35px;
+      object-fit: contain;
+    }
+  }
+
+  .games-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); // cartões menores
+    gap: 0.5rem; // quase colados
+    justify-items: center;
+
+    .status-icon {
+      position: absolute;
+      top: 4px;
+      left: 4px;
+      width: 50px;
+      height: 50px;
+      z-index: 2;
+    }
+    
+  }
+
+  .game-card {
+    background: #f5f5f5e5;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+    transition: transform 0.2s ease;
+    width: 160px;
+    height: 220px;
+    padding: 4px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative; // necessário para posicionar .status-icon
+
+    img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      border-radius: 8px;
+    }
+
+    &:hover {
+      transform: scale(1.05);
+      background: #38bdf8;
+    }
+
+    &:active {
+      transform: translateY(2px);
+    }
+  }
+}
+
+@keyframes float {
+  0%   { transform: translateY(0); }
+  50%  { transform: translateY(-3px); }
+  100% { transform: translateY(0); }
+}
+
+.float {
+  animation: float 1.5s ease-in-out infinite;
+}
+
+.filtros {
+  display: flex;
+  flex-direction: column;
+  align-items: end;
+  justify-content: center;
+  margin-top: -15px;
+
+  h1 {
+    margin-bottom: 0;
+    margin-right: 240px;
+    font-size: 1.3rem;
+  }
+
+  .search-box {
+    margin: 1.5rem 0 2rem;
+    display: flex;
+    flex-direction: row;
+  
+    input,
+    select {
+      padding: 15px 15px;
+      border-radius: 10px;
+      border: 2px solid transparent;
+      background: #1a1a1a;
+      color: #fff;
+      font-family: "Press Start 2P", cursive;
+      font-size: 13px;
+      text-align: center;
+      outline: none;
+      box-shadow: 0 0 6px rgb(208, 231, 231);
+      transition: all 0.25s ease-in-out;
+      width: 80%;
+      margin: 0 0.3rem 0.5rem;
+  
+      &::placeholder {
+        color: #555;
+      }
+  
+      &:hover {
+        box-shadow: 0 0 8px rgb(181, 238, 238);
+      }
+  
+      &:focus {
+        border-color: #fff;
+        box-shadow: 0 0 10px #fff;
+        background: #121212;
+      }
+    }
+  
+    select {
+      width: 80%;
+      text-align: center;
+    }
+  }
+}
+

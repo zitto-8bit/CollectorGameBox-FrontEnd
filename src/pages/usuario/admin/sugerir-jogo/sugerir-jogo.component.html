@@ -1,0 +1,99 @@
+<app-header></app-header>
+
+<div class="suggest-game">
+  <div class="form-card">
+    <h1>
+      <img src="/icon/game/icon-controle-jogado.png" class="icon" alt="icon" />
+      Sugerir Novo Jogo
+    </h1>
+
+    <form [formGroup]="jogoForm" (ngSubmit)="submit()">
+      <div class="form-group">
+        <label>Nome do Jogo</label>
+        <input type="text" placeholder="Ex: Aventura no Mundo Encantado" formControlName="name" />
+      </div>
+
+      <div class="form-group">
+        <label>Imagem do Jogo</label>
+        <div class="file-upload">
+          <label for="file-upload" 
+                 class="file-label" 
+                 [ngClass]="{'file-label-error': jogoForm.get('imageBase64')?.invalid && jogoForm.get('imageBase64')?.touched}">
+            Escolher Arquivo
+          </label>
+          <input type="file" id="file-upload" accept="image/*" (change)="onImageSelected($event)" />
+          <div *ngIf="imagePreview" class="image-preview">
+            <img [src]="imagePreview" alt="Preview" />
+          </div>
+        </div>
+      </div>     
+
+      <div class="row">
+        <div class="form-group half">
+          <label>Plataforma</label>
+          <select formControlName="plataform">
+            <option value="" disabled selected>Selecione uma plataforma</option>
+            <option *ngFor="let p of plataformasDisponiveis" [value]="p">{{ p }}</option>
+          </select>
+        </div>
+      
+        <div class="form-group half">
+          <label>Ano de Lançamento</label>
+          <input 
+            type="text" 
+            formControlName="release"
+            mask="0000"
+            placeholder="AAAA"
+            class="year-input"
+          />
+        </div>
+      </div>         
+
+      <div class="form-group">
+        <label>Sinopse</label>
+        <textarea style="resize: none !important;" placeholder="Ex: Um herói relutante precisa salvar um reino dominado por criaturas mágicas." 
+        formControlName="synopsis" [maxlength]="synopsisMaxLength" (input)="updateCharCount()"></textarea>
+        <div class="char-count">{{ synopsisLength }}/{{synopsisMaxLength}}</div>
+      </div>      
+
+      <div class="input-box toggle-box" style="margin-top: 0;">
+        <label>Jogo para maiores?</label>
+        <div class="box">
+          <div class="switch" [class.checked]="jogoForm.get('adult')?.value === true" (click)="alternarAdulto()">
+            <div class="slider"></div>
+          </div>
+          <div class="toggle-status">
+            {{ jogoForm.get('adult')?.value === true ? 'Sim' : 'Não' }}
+          </div>
+        </div>
+      </div>
+
+      <div class="form-group">
+        <label>Categorias</label>
+        <div class="checkbox-group">
+          <label *ngFor="let cat of categoriasDisponiveis">
+            <input type="checkbox" 
+                   [value]="cat"
+                   (change)="onCategoryChange($event, cat)" />
+            {{ cat.name }}
+          </label>
+        </div>
+      </div>               
+      
+      <div *ngIf="jogoForm.get('categories')?.hasError('required') && jogoForm.get('categories')?.touched" class="error-message">
+        Você deve selecionar pelo menos uma categoria.
+      </div>      
+      
+      <div class="botoes">
+        <div class="voltar">
+          <img src="/icon/icon-voltar.png" alt="Voltar">
+          <h3>Voltar</h3>
+        </div>
+        <div class="avancar" (click)="submit()">
+          <h3>Avançar</h3>
+          <img src="/icon/icon-avancar.png" alt="Avançar">
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

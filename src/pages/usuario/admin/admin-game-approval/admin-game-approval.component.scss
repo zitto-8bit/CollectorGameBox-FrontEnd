@@ -1,0 +1,165 @@
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
+
+$azul-neon: #38bdf8;
+$azul-hover: #0ea5e9;
+$vermelho-erro: #ff4d4d;
+$fundo-escuro: #0f172a;
+$fundo-card: #1e293b;
+
+.admin-container {
+  background-color: $fundo-escuro;
+  min-height: 100vh;
+  padding: 4rem 1rem;
+  color: #fff;
+  font-family: "Press Start 2P", cursive;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+
+  h2 {
+    font-size: 1.5rem;
+    text-align: center;
+    margin-bottom: 2.5rem;
+    color: $azul-neon;
+    text-shadow: 0 0 10px $azul-neon;
+  }
+
+  .jogo-card {
+    background: $fundo-card;
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding: 1.5rem;
+    margin-bottom: 2rem;
+    border-radius: 16px;
+    box-shadow: 0 0 20px $azul-neon, 0 0 10px $azul-hover;
+    border: 3px solid $azul-neon;
+    transition: transform 0.3s ease;
+    width: 80%;
+
+    &:hover {
+      transform: scale(1.02);
+    }
+
+    img {
+      width: 140px;
+      height: auto;
+      border-radius: 12px;
+      margin-right: 1.5rem;
+      box-shadow: 0 0 10px $azul-neon;
+    }
+
+    .categorias {
+      display: flex;
+      align-items: baseline;
+      gap: 10px;
+      margin-top: -10px;
+      margin-bottom: 20px;
+
+      strong {
+        display: block;
+        color: $azul-hover;
+        margin-bottom: 0.5rem;
+        font-family: "Press Start 2P", cursive;
+        font-size: 0.65rem;
+      }
+
+      ul {
+        list-style: none;
+        padding: 0;
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+
+      li {
+        background: $azul-neon;
+        color: $fundo-escuro;
+        padding: 0.3rem 0.6rem;
+        border-radius: 6px;
+        font-size: 0.55rem;
+        font-family: "Press Start 2P", cursive;
+        box-shadow: 0 0 5px $azul-neon;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+      }
+    }
+
+    .jogo-info {
+      flex: 1;
+
+      h3 {
+        font-size: 0.9rem;
+        margin-top: 0;
+        margin-bottom: 1rem;
+        color: #fff;
+      }
+
+      p {
+        font-size: 0.65rem;
+        line-height: 1.6;
+        color: #94a3b8;
+        margin-bottom: 0.75rem;
+
+        strong {
+          color: $azul-hover;
+        }
+      }
+
+      .botoes {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        gap: 20px;
+
+        .aprovar {
+          font-size: 0.65rem;
+          font-family: "Press Start 2P", cursive;
+          background-color: $azul-neon;
+          color: $fundo-escuro;
+          border: none;
+          padding: 0.75rem 1.25rem;
+          border-radius: 10px;
+          cursor: pointer;
+          text-transform: uppercase;
+          transition: background-color 0.2s ease, transform 0.2s ease;
+          box-shadow: 0 4px $azul-hover;
+
+          &:hover {
+            background-color: $azul-hover;
+            transform: scale(1.05);
+          }
+
+          &:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px $azul-hover;
+          }
+        }
+
+        .reprovar {
+          font-size: 0.65rem;
+          font-family: "Press Start 2P", cursive;
+          background-color: #f87171;
+          color: #fff;
+          border: none;
+          padding: 0.75rem 1.25rem;
+          border-radius: 10px;
+          cursor: pointer;
+          text-transform: uppercase;
+          transition: background-color 0.2s ease, transform 0.2s ease;
+          box-shadow: 0 4px $vermelho-erro;
+
+          &:hover {
+            background-color: $vermelho-erro;
+            transform: scale(1.05);
+          }
+
+          &:active {
+            transform: translateY(2px);
+            box-shadow: 0 2px $vermelho-erro;
+          }
+        }
+      }
+    }
+  }
+}

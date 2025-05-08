@@ -1,0 +1,188 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Contêiner Principal */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  top: 0;
+  min-height: 100vh;
+  position: fixed;
+  background: url(../../../assets/images/background-reg-log.jpg) center/cover
+    no-repeat;
+}
+
+/* Contêiner do Formulário */
+.form-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.8); /* Manter o fundo escuro */
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Título do Formulário */
+h2 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilo dos Inputs */
+.input-box {
+  position: relative;
+  margin: 20px 0;
+  width: 100%;
+}
+
+.input-box input,
+.input-box select {
+  width: 100%;
+  padding: 18px 45px 18px 20px;
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  border-radius: 40px;
+  outline: none;
+  font-size: 16px;
+  color: #fff;
+}
+
+.input-box input::placeholder,
+.input-box select::placeholder {
+  color: #d0fdff;
+}
+
+/* Contêiner para os campos lado a lado */
+.input-box-container {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  width: 100%;
+}
+
+.input-box-container .input-box {
+  width: calc(50% - 10px); /* Cada campo vai ocupar 50% do container com margem entre eles */
+}
+
+.input-box-container .toggle-box {
+  width: calc(50% - 10px); /* Acessibilidade também vai ocupar 50% */
+}
+
+/* Estilo do Switch (Acessibilidade) */
+.toggle-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .switch {
+    width: 50px;
+    height: 26px;
+    background-color: rgba(255, 255, 255, 0.3);
+    border-radius: 30px;
+    position: relative;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+    margin-top: 8px;
+
+    .slider {
+      position: absolute;
+      top: 3px;
+      left: 3px;
+      width: 20px;
+      height: 20px;
+      background-color: white;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+    }
+
+    &.checked {
+      background-color: #4caf50;
+
+      .slider {
+        transform: translateX(24px);
+      }
+    }
+  }
+
+  .toggle-status {
+    margin-top: 6px;
+    color: #d0fdff;
+    font-size: 0.9rem;
+  }
+}
+
+/* Botão de Cadastro */
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #4caf50;
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+button:disabled {
+  background-color: #aaa;
+}
+
+/* Mensagens de Erro */
+.error {
+  color: #ff4d4d;
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+.signup-link a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Remover ícone de calendário do campo de data */
+input[type="date"]::-webkit-calendar-picker-indicator {
+  display: none;
+}
+
+input[type="date"] {
+  -webkit-appearance: none;
+  appearance: none;
+}
+
+/* Estilo para o campo de Data de Nascimento */
+.input-box input#dataNasc {
+  width: 100%; /* Garantir que o input ocupe 100% da largura disponível */
+  padding: 18px 20px; /* Ajustar padding para garantir que o texto não seja cortado */
+  background-color: transparent; /* Mantém o fundo transparente */
+  border: 2px solid rgba(255, 255, 255, 0.8); /* Borda suave */
+  border-radius: 40px;
+  outline: none;
+  font-size: 16px;
+  color: #fff;
+  white-space: nowrap; /* Impede quebra de linha */
+  text-align: center; /* Alinha o texto inserido ao centro */
+  overflow: hidden; /* Impede que o texto ultrapasse o input */
+}
+
+/* Estilo específico para o placeholder de Data de Nascimento */
+.input-box input#dataNasc::placeholder {
+  color: #d0fdff; /* Cor suave para o texto do placeholder */
+  text-align: center; /* Alinha o placeholder ao centro */
+}

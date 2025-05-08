@@ -1,0 +1,138 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap");
+
+$vermelho-erro: #ff4d4d;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", sans-serif;
+}
+
+/* Contêiner Principal */
+.main-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  top: 0;
+  min-height: 100vh;
+  position: fixed;
+  background: url(../../../assets/images/background-reg-log.jpg) center/cover
+    no-repeat;
+}
+
+/* Contêiner do Formulário */
+.form-container {
+  max-width: 400px;
+  width: 100%;
+  padding: 2rem;
+  background-color: rgba(0, 0, 0, 0.8); /* Ajustei para dar mais contraste */
+  border-radius: 12px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+  color: #fff;
+}
+
+/* Título do Formulário */
+h2 {
+  font-size: 36px;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Estilo dos Inputs */
+.input-box {
+  position: relative;
+  margin: 20px 0; /* Menor margem entre os inputs */
+  width: 100%;
+}
+
+.input-box input {
+  width: 100%;
+  padding: 18px 45px 18px 20px; /* Ajustei o preenchimento para mais equilíbrio */
+  background-color: transparent;
+  border: 2px solid rgba(255, 255, 255, 0.8); /* A cor da borda está mais suave */
+  border-radius: 40px;
+  outline: none;
+  font-size: 16px;
+  color: #fff;
+}
+
+.input-box input::placeholder {
+  color: #d0fdff;
+}
+
+.input-box i {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 20px;
+}
+
+/* Estilo para o Checkbox e Link Esqueci minha senha */
+.remember-forgot {
+  display: flex;
+  justify-content: space-between;
+  margin: -10px 0 15px; /* Ajustei para reduzir a margem */
+}
+
+.remember-forgot label input {
+  accent-color: #fff;
+  margin-right: 5px;
+}
+
+.remember-forgot a {
+  text-decoration: none;
+  color: #fff;
+}
+
+.remember-forgot a:hover {
+  text-decoration: underline;
+}
+
+/* Botão de Login */
+button {
+  width: 100%;
+  padding: 0.8rem;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 600;
+}
+
+button:disabled {
+  background-color: #aaa;
+}
+
+/* Mensagens de Erro */
+.error {
+  color: $vermelho-erro;
+  font-size: 0.85rem;
+  margin: 0.5rem 0;
+  text-align: center;
+}
+
+/* Link para cadastro */
+.signup-link {
+  margin: 0;
+  text-align: center;
+}
+
+.signup-link a {
+  text-decoration: none;
+  color: #007bff;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.signup-link a:hover {
+  text-decoration: underline;
+}
+
+.invalid-input {
+  border: 2px solid $vermelho-erro !important;
+}

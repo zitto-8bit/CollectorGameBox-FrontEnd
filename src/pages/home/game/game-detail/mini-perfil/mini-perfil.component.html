@@ -1,0 +1,23 @@
+<div *ngIf="jogoUsuario" class="mini-perfil" [style.left.px]="position?.left" [style.top.px]="position?.top"
+    [style]="'box-shadow: 0px 0px 3px 3px ' + color">
+    <div class="head-user">
+        <img class="mini-perfil-img" [src]="'data:image/jpeg;base64,' + jogoUsuario.usuarioDto.icone"
+            alt="Foto do usuário" [style]="'border: 2px solid ' + color">
+        <div>
+            <p>{{ jogoUsuario.usuarioDto.nome }}</p>
+            <p style="font-size: 8px;">{{ jogoUsuario.usuarioDto.email }}</p>
+        </div>
+    </div>
+    <div [style]="'border-bottom: 1px solid ' + color" class="info">
+        <p>{{ jogoUsuario.usuarioDto.biografia }}</p>
+    </div>
+
+    <div class="jogos-wrapper">
+        <div *ngIf="games?.length" class="jogos-empilhados" [@listStagger]>
+            <ng-container *ngFor="let jogo of games; let i = index">
+                <img class="jogo-capa" [src]="'data:image/jpeg;base64,' + jogo.imageBase64" [style.left.px]="i * 12"
+                    [style.zIndex]="i" />
+            </ng-container>
+        </div>
+    </div>
+</div>

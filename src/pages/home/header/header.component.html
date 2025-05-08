@@ -1,0 +1,18 @@
+<header class="header">
+    <div class="header__logo">
+        <a [routerLink]="['/inicio']">
+            <img (click)="somaUmAEsterEgg()" src="/iconCollectorGameBox.png" alt="Logo" />
+            <img [@slideInOutTopToDown] class="header__logo__egg" *ngIf="esterAtivo" src="/icon/easter/egg/icon-god.png" alt="God">
+        </a>
+        <h1>Collector Game Box</h1>
+    </div>
+    <nav class="header__nav">
+        <a routerLink="/inicio" routerLinkActive="active">Início</a>
+        <a *ngIf="!usuario" routerLink="/login" routerLinkActive="active">Login</a>
+        <a *ngIf="!usuario" routerLink="/registro" routerLinkActive="active">Registrar</a>
+        <div class="header__user" *ngIf="usuario">
+            <img [routerLink]="['/perfil']" [src]="'data:image/png;base64,' + usuario.icone" class="header__user__icon-user" alt="Logo" />
+            <span>{{ usuario.nome!.split(' ')[0] }}</span>
+        </div>
+    </nav>
+</header>

@@ -1,0 +1,40 @@
+<app-header style="z-index: 1; position: relative;"></app-header>
+<div class="main-container">
+  <div class="form-container" [@fadeInOut]>
+    <h2>Login</h2>
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <div class="input-box">
+        <label for="email">Email</label>
+        <input type="email" 
+               id="email" 
+               formControlName="email" 
+               placeholder="Digite seu email"
+               [ngClass]="{'invalid-input': loginForm.get('email')?.invalid && loginForm.get('email')?.touched}">
+        <div *ngIf="loginForm.get('email')?.errors?.['backend']" class="error">
+          {{ loginForm.get('email')?.errors?.['backend'] }}
+        </div>
+      </div>
+
+      <div class="input-box">
+        <label for="senha">Senha</label>
+        <input type="password" 
+               id="senha" 
+               formControlName="senha" 
+               placeholder="Digite sua senha">
+        <div *ngIf="loginForm.get('senha')?.errors?.['backend']" class="error">
+          {{ loginForm.get('senha')?.errors?.['backend'] }}
+        </div>
+      </div>
+
+      <button type="submit" [disabled]="loginForm.invalid">Entrar</button>
+    </form>
+
+    <div *ngIf="loginInvalido" class="error">
+      Email ou senha incorretos.
+    </div>
+
+    <div class="signup-link">
+      <p>Não tem uma conta? <a [routerLink]="['/registro']">Registre-se aqui</a></p>
+    </div>
+  </div>
+</div>

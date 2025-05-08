@@ -1,0 +1,44 @@
+<div class="catalog">
+  <div class="catalog">
+    <div class="filtros">
+      <h1>Filtros</h1>
+      <div class="search-box">
+        <input type="text" [(ngModel)]="filtroNome" placeholder="Buscar por nome" />
+  
+        <select [(ngModel)]="filtroCategoria">
+          <option value="">Todas as categorias</option>
+          <option *ngFor="let cat of categoriasDisponiveis" [value]="cat.name">{{ cat.name }}</option>
+        </select>
+      </div>
+    </div>
+
+    <div *ngIf="meusJogosFiltrados().length != 0">
+      <h1 [@fadeInOut]>
+        <img src="/icon/game/coin-icon.png" alt="Logo" class="icon float" />
+        Minha coleção
+        <img src="/icon/game/coin-icon.png" alt="Logo" class="icon float" />
+      </h1>
+
+      <div class="games-grid" [@listStagger]="animacaoKey">
+        <mat-card class="game-card" *ngFor="let game of meusJogosFiltrados()" (click)="abrirDetalhe(game)">
+          <img src="/icon/game/icon-controle-jogado.png" class="status-icon" alt="Status do jogo" />
+
+          <img mat-card-image [src]="'data:image/png;base64,' + game.imageBase64" alt="{{ game.name }}" />
+        </mat-card>
+      </div>
+    </div>
+
+    <div [@fadeInOut]>
+      <h1>
+        <img src="/icon/game/coin-icon.png" alt="Logo" class="icon float" />
+        Catálogo
+        <img src="/icon/game/coin-icon.png" alt="Logo" class="icon float" />
+      </h1>
+
+      <div class="games-grid" [@listStagger]="animacaoKey">
+        <mat-card class="game-card" *ngFor="let game of outrosJogosFiltrados()" (click)="abrirDetalhe(game)">
+          <img mat-card-image [src]="'data:image/png;base64,' + game.imageBase64" alt="{{ game.name }}" />
+        </mat-card>
+      </div>
+    </div>
+  </div>

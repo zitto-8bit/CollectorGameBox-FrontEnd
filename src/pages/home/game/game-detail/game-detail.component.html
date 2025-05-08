@@ -1,0 +1,190 @@
+<app-header style="z-index: 1; position: relative;"></app-header>
+<div class="game-detail-container">
+    <div [@fadeSlideIn] class="game-card" style="z-index: 1;">
+        <div class="game-content">
+            <div style="display: flex; align-items: center; flex-direction: column; position: relative;">
+                <img class="game-image" [src]="'data:image/jpeg;base64,' + game.imageBase64" alt="{{ game.name }}">
+            
+                <img (click)="salvarJogado(false)" *ngIf="usuario && game.jogoUsuario.isPossui" class="game-icon" src="/icon/game/icon-controle-jogado.png" alt="Icone de Controle">
+                <img (click)="salvarJogado(true)" *ngIf="usuario && !game.jogoUsuario.isPossui" class="game-icon" src="/icon/game/icon-controle-nao-jogado.png" alt="Icone de Controle">
+            
+                <div class="game-rating">
+                    <div class="stars" [@listStagger]>
+                        <ng-container *ngFor="let star of starsArray; let i = index">
+                            <i [class.checked]="i < notaJogo" class="fa fa-star star-icon-total"></i>
+                        </ng-container>
+                        <span style="margin-left: 10px; color: #ccc;">(<span style="color: gold; text-decoration: underline;">{{ notaJogo != 0 ? (notaJogo | number:'1.1-1') : '' }}</span>)
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="game-info-section">
+                <h1 class="game-title" [style]="{'color': titleColor}">{{ game.name }}</h1>
+                <p class="game-subtitle">{{ game.plataform }} | {{ game.release }}</p>
+
+                <div class="game-info">
+                    <p><strong>Categoria:</strong> {{ getCategorias() }}</p>
+                    <p [style]="game.adult == true ? 'color: #ff4d4d' : 'color: #66ff66'">
+                        <strong style="color: #f8fafc !important;">
+                            Classificação:
+                        </strong> {{ game.adult == true ? '18+' : 'Livre' }}
+                    </p>
+                    <p *ngIf="usuario"><strong>Você possui este jogo:</strong> {{ game.jogoUsuario!.isPossui ? 'Sim' :
+                        'Não' }}</p>
+                </div>
+
+                <p class="game-synopsis">{{ game.synopsis }}</p>
+
+                <div class="game-coment" *ngIf="usuario && game.jogoUsuario.comentario">
+                    <strong style="margin: 10px 0;">O que você achou dessa obra?</strong>
+                    <div class="comentario-container">
+                        <div class="comentario">
+                            <img class="user-avatar" [src]="'data:image/jpeg;base64,' + usuario.icone"
+                                alt="Foto do usuário">
+                            <div class="comentario-conteudo">
+                                <p class="user-nome">{{ usuario.nome }}</p>
+
+                                <!-- Exibe o comentário ou textarea para edição -->
+                                <div>
+                                    <div *ngIf="!editandoComentario">
+                                        <p class="comentario-texto">{{ game.jogoUsuario.comentario }}</p>
+                                    </div>
+                                    <div *ngIf="editandoComentario">
+                                        <textarea [(ngModel)]="comentarioEditado" rows="1" class="comentario-input"
+                                            #autoResizeTextarea maxlength="100"
+                                            (input)="autoResize(autoResizeTextarea)">
+                                        </textarea>
+                                        <p class="limite-msg"
+                                            *ngIf="comentarioEditado && comentarioEditado!.length >= 100">
+                                            Limite de caracteres atingido.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+
+                        <!-- Botão Editar -->
+                        <div class="editar" *ngIf="!editandoComentario">
+                            <p>Editar</p>
+                            <button (click)="editarComentario()">
+                                <img src="/icon/icon-editar-comentario.png" alt="Editar Comentário">
+                            </button>
+                        </div>
+                        <div class="editar" *ngIf="editandoComentario">
+                            <p>Salvar</p>
+                            <button (click)="salvarComentario()">
+                                <img src="/icon/icon-salvar-comentario.png" alt="Pronto">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="game-rating" *ngIf="usuario">
+                        <strong style="margin-right: 10px;">Sua avaliação: </strong>
+                        <div class="stars">
+                            <ng-container *ngFor="let star of starsArray; let i = index">
+                                <i (click)="setNotaUsuario(i + 1)" [class.checked]="i < game.jogoUsuario.nota"
+                                    class="fa fa-star star-icon">
+                                </i>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="game-coment" *ngIf="usuario && !game.jogoUsuario.comentario">
+                    <strong style="margin: 10px 0;" *ngIf="editandoComentario">Deixe sua opinião sobre essa
+                        obra</strong>
+                    <div class="comentario-container">
+                        <div class="comentario" *ngIf="editandoComentario">
+                            <img class="user-avatar" [src]="'data:image/jpeg;base64,' + usuario.icone"
+                                alt="Foto do usuário">
+                            <div class="comentario-conteudo">
+                                <p class="user-nome">{{ usuario.nome }}</p>
+
+                                <!-- Exibe o comentário ou textarea para edição -->
+                                <div>
+                                    <div *ngIf="!editandoComentario">
+                                        <p class="comentario-texto">{{ game.jogoUsuario.comentario }}</p>
+                                    </div>
+                                    <div *ngIf="editandoComentario">
+                                        <textarea [(ngModel)]="comentarioEditado" rows="1" class="comentario-input"
+                                            #autoResizeTextarea maxlength="100"
+                                            (input)="autoResize(autoResizeTextarea)">
+                                        </textarea>
+                                        <p class="limite-msg"
+                                            *ngIf="comentarioEditado && comentarioEditado!.length >= 100">
+                                            Limite de caracteres atingido.
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Botão Editar -->
+                        <div class="editar" *ngIf="!editandoComentario">
+                            <p>Comentar</p>
+                            <button (click)="editarComentario()">
+                                <img src="/icon/icon-comentar.png" alt="Comentar">
+                            </button>
+                        </div>
+                        <div class="editar" *ngIf="editandoComentario">
+                            <p>Salvar</p>
+                            <button (click)="salvarComentario()">
+                                <img src="/icon/icon-salvar-comentario.png" alt="Pronto">
+                            </button>
+                        </div>
+                    </div>
+                    <div class="game-rating" *ngIf="usuario">
+                        <strong style="margin-right: 10px;">Sua avaliação: </strong>
+                        <div class="stars">
+                            <ng-container *ngFor="let star of starsArray; let i = index">
+                                <i (click)="setNotaUsuario(i + 1)" [class.checked]="i < game.jogoUsuario.nota"
+                                    class="fa fa-star star-icon">
+                                </i>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="voltar" (click)="voltar()">
+            <img src="/icon/icon-voltar.png" alt="Voltar">
+            <h3>Voltar</h3>
+        </div>
+    </div>
+
+    <div class="comentarios-laterais" [@fadeInOut] [@slideInOut] *ngIf="existeComentarios().length">
+        <h2 class="titulo-comentarios">Comentários</h2>
+        <div class="comentarios-lista">
+            <div class="comentario-publico" *ngFor="let comentario of usuariosJogo | slice:0:5">
+                <img *ngIf="comentario.comentario" class="avatar-publico" [src]="'data:image/jpeg;base64,' + comentario.usuarioDto.icone" alt="Avatar"
+                    (click)="togglePopover(comentario, $event)"
+                    [class.avatar-selecionado]="comentario.usuarioDto.id === usuarioSelecionado?.usuarioDto?.id"
+                    [style]="comentario.usuarioDto.id === usuarioSelecionado?.usuarioDto?.id ? 'transform: scale(1.20); outline: 2px solid ' + shadowUserColor : ''" />
+
+                <div *ngIf="comentario.comentario" class="comentario-publico-conteudo">
+                    <div class="comentario-nome-nota">
+                        <p class="nome-publico">
+                            {{comentario.usuarioDto.nome!.split(' ')[0].slice(0, 10)}}<span *ngIf="comentario.usuarioDto.nome!.split(' ')[0].length > 10">...</span>
+                        </p>
+
+                        <div class="game-rating">
+                            <div class="stars">
+                                <ng-container *ngFor="let star of starsArray; let i = index">
+                                    <i [class.checked]="i < comentario.nota" class="fa fa-star star-icon-comment">
+                                    </i>
+                                </ng-container>
+                            </div>
+                        </div>
+                    </div>
+                    <p class="texto-publico">{{ comentario.comentario }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Mini Perfil que aparece quando um usuário clica no avatar -->
+    <app-mini-perfil [@fadeInOut] *ngIf="usuarioSelecionado" [jogoUsuario]="usuarioSelecionado"
+        [position]="usuarioPosition[usuarioSelecionado.usuarioDto.id]" [color]="shadowUserColor">
+    </app-mini-perfil>
+</div>
