@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 import { fadeInOut, listStagger } from '../../../animations/animations';
 import { FormsModule } from '@angular/forms';
 import { CategoriaService } from '../../../service/categoria.service';
+import { LoadingComponent } from '../../loading/loading.component';
 
 @Component({
   selector: 'app-game',
@@ -20,6 +21,7 @@ import { CategoriaService } from '../../../service/categoria.service';
     MatChipsModule,
     MatIconModule,
     FormsModule,
+    LoadingComponent
   ],
   templateUrl: './game.component.html',
   styleUrls: ['./game.component.scss'],
@@ -28,6 +30,7 @@ import { CategoriaService } from '../../../service/categoria.service';
 export class GameComponent implements OnInit {
   games?: Game[];
   animacaoKey = 0; // Variável de controle de animação
+  loading = true;
 
   constructor(
     private gameService: GameService,
@@ -48,6 +51,7 @@ export class GameComponent implements OnInit {
         .getAllUserGames(this.authService.getUsuario()!)
         .subscribe({
           next: (games: Game[]) => {
+            this.loading = false;
             this.games = games;
             this.animacaoKey++; // Força a animação com a lista atualizada
           },
@@ -55,6 +59,7 @@ export class GameComponent implements OnInit {
     } else {
       this.gameService.getAllGames().subscribe({
         next: (games: Game[]) => {
+          this.loading = false;
           this.games = games;
           this.animacaoKey++; // Força a animação com a lista atualizada
         },
