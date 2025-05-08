@@ -46,7 +46,7 @@
       </div>
     </div>
 
-    <div [@fadeInOut]>
+    <div [@fadeInOut] *ngIf="!loading">
       <h1>
         <img src="/icon/game/coin-icon.png" alt="Logo" class="icon float" />
         Catálogo
@@ -67,7 +67,7 @@
         </mat-card>
       </div>
     </div>
+    <app-loading *ngIf="loading"></app-loading>
   </div>
 
-  <app-loading *ngIf="loading"></app-loading>
 </div>
