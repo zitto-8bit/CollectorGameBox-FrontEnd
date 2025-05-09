@@ -13,6 +13,7 @@ import { ValidationErrorResponse } from '../../../interface/Error';
 import { NgxMaskDirective, provideNgxMask } from 'ngx-mask';
 import { fadeInOut } from '../../../animations/animations';
 import { HeaderComponent } from '../../home/header/header.component';
+import { LoadingComponent } from '../../loading/loading.component';
 
 @Component({
   selector: 'app-registro',
@@ -22,13 +23,15 @@ import { HeaderComponent } from '../../home/header/header.component';
     CommonModule, 
     RouterModule,
     NgxMaskDirective,
-    HeaderComponent],
+    HeaderComponent,
+    LoadingComponent],
     animations: [fadeInOut],
   providers: [provideNgxMask()]
 })
 export class RegistroComponent implements OnInit {
   registroForm: FormGroup;
   msgErroGenerica: string = '';
+  loading: boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -63,12 +66,15 @@ export class RegistroComponent implements OnInit {
   }
 
   onSubmit(): void {
+    this.loading = true;
     const dadosLogin: RegistroDTO = this.registroForm.value;
     this.usuarioService.registrar(dadosLogin).subscribe({
       next: () => {
         this.router.navigate(['/login']);
+        this.loading = false;
       },
       error: (err) => {
+        this.loading = false;
         const validationErrorResponse: ValidationErrorResponse = err.error;
         const erros = validationErrorResponse.erros;
 

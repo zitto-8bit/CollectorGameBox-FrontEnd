@@ -1,6 +1,6 @@
 <app-header style="z-index: 1; position: relative;"></app-header>
 <div class="main-container">
-  <div class="form-container" [@fadeInOut]>
+  <div class="form-container" *ngIf="!loading">
     <h2>Cadastro de Usuário</h2>
     <form [formGroup]="registroForm" (ngSubmit)="onSubmit()">
       
@@ -64,3 +64,4 @@
     </div>
   </div>
 </div>
+<app-loading *ngIf="loading"></app-loading>

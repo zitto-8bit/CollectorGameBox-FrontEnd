@@ -7,25 +7,22 @@
   font-family: "Poppins", sans-serif;
 }
 
-/* Contêiner Principal */
 .main-container {
   display: flex;
   justify-content: center;
   align-items: center;
   width: 100%;
-  top: 0;
   min-height: 100vh;
-  position: fixed;
-  background: url(../../../assets/images/background-reg-log.jpg) center/cover
-    no-repeat;
+  background: url(../../../assets/images/background-reg-log.jpg) center/cover no-repeat;
+  padding: 2rem;
 }
 
-/* Contêiner do Formulário */
+/* Formulário */
 .form-container {
   max-width: 400px;
   width: 100%;
   padding: 2rem;
-  background-color: rgba(0, 0, 0, 0.8); /* Manter o fundo escuro */
+  background-color: rgba(0, 0, 0, 0.85);
   border-radius: 12px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
   color: #fff;
@@ -34,29 +31,28 @@
   align-items: center;
 }
 
-/* Título do Formulário */
 h2 {
-  font-size: 36px;
+  font-size: 2rem;
   text-align: center;
-  margin-bottom: 20px;
+  margin-bottom: 1.5rem;
 }
 
-/* Estilo dos Inputs */
+/* Inputs */
 .input-box {
   position: relative;
-  margin: 20px 0;
+  margin: 1rem 0;
   width: 100%;
 }
 
 .input-box input,
 .input-box select {
   width: 100%;
-  padding: 18px 45px 18px 20px;
+  padding: 1rem;
   background-color: transparent;
   border: 2px solid rgba(255, 255, 255, 0.8);
   border-radius: 40px;
   outline: none;
-  font-size: 16px;
+  font-size: 1rem;
   color: #fff;
 }
 
@@ -65,7 +61,7 @@ h2 {
   color: #d0fdff;
 }
 
-/* Contêiner para os campos lado a lado */
+/* Campos lado a lado (sem alterar layout) */
 .input-box-container {
   display: flex;
   justify-content: space-between;
@@ -74,14 +70,14 @@ h2 {
 }
 
 .input-box-container .input-box {
-  width: calc(50% - 10px); /* Cada campo vai ocupar 50% do container com margem entre eles */
+  width: calc(50% - 10px);
 }
 
 .input-box-container .toggle-box {
-  width: calc(50% - 10px); /* Acessibilidade também vai ocupar 50% */
+  width: calc(50% - 10px);
 }
 
-/* Estilo do Switch (Acessibilidade) */
+/* Switch */
 .toggle-box {
   display: flex;
   flex-direction: column;
@@ -124,7 +120,7 @@ h2 {
   }
 }
 
-/* Botão de Cadastro */
+/* Botão */
 button {
   width: 100%;
   padding: 0.8rem;
@@ -133,15 +129,16 @@ button {
   border: none;
   border-radius: 40px;
   cursor: pointer;
-  font-size: 16px;
+  font-size: 1rem;
   font-weight: 600;
+  transition: 0.3s;
 }
 
 button:disabled {
   background-color: #aaa;
 }
 
-/* Mensagens de Erro */
+/* Mensagens de erro */
 .error {
   color: #ff4d4d;
   font-size: 0.85rem;
@@ -156,7 +153,13 @@ button:disabled {
   cursor: pointer;
 }
 
-/* Remover ícone de calendário do campo de data */
+.signup-link p {
+  text-align: center;
+  margin-top: 1rem;
+  font-size: 0.9rem;
+}
+
+/* Remove ícone do calendário */
 input[type="date"]::-webkit-calendar-picker-indicator {
   display: none;
 }
@@ -166,23 +169,84 @@ input[type="date"] {
   appearance: none;
 }
 
-/* Estilo para o campo de Data de Nascimento */
+/* Estilo do campo Data de Nascimento */
 .input-box input#dataNasc {
-  width: 100%; /* Garantir que o input ocupe 100% da largura disponível */
-  padding: 18px 20px; /* Ajustar padding para garantir que o texto não seja cortado */
-  background-color: transparent; /* Mantém o fundo transparente */
-  border: 2px solid rgba(255, 255, 255, 0.8); /* Borda suave */
-  border-radius: 40px;
-  outline: none;
-  font-size: 16px;
-  color: #fff;
-  white-space: nowrap; /* Impede quebra de linha */
-  text-align: center; /* Alinha o texto inserido ao centro */
-  overflow: hidden; /* Impede que o texto ultrapasse o input */
+  text-align: center;
+  white-space: nowrap;
+  overflow: hidden;
+  font-size: 1rem;
 }
 
-/* Estilo específico para o placeholder de Data de Nascimento */
-.input-box input#dataNasc::placeholder {
-  color: #d0fdff; /* Cor suave para o texto do placeholder */
-  text-align: center; /* Alinha o placeholder ao centro */
+/* 🔹 RESPONSIVIDADE - MANTENDO SEU LAYOUT 🔹 */
+@media (max-width: 1024px) {
+  .main-container {
+    padding: 1.5rem;
+  }
+  .form-container {
+    padding: 1.5rem;
+  }
+  h2 {
+    font-size: 1.8rem;
+  }
+}
+
+@media (max-width: 768px) {
+  .main-container {
+    align-items: flex-start;
+    padding-top: 2rem;
+  }
+  .form-container {
+    max-width: 100%;
+    padding: 1.5rem;
+  }
+  h2 {
+    font-size: 1.5rem;
+  }
+  .input-box input,
+  .input-box select {
+    font-size: 0.95rem;
+    padding: 0.9rem;
+  }
+  .toggle-box .toggle-status {
+    font-size: 0.8rem;
+  }
+  button {
+    padding: 0.7rem;
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .input-box-container {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  .input-box-container .input-box,
+  .input-box-container .toggle-box {
+    width: 100%;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-container {
+    padding: 1rem;
+  }
+  h2 {
+    font-size: 1.3rem;
+  }
+  .input-box input,
+  .input-box select {
+    font-size: 0.9rem;
+    padding: 0.8rem;
+  }
+  button {
+    font-size: 0.9rem;
+    padding: 0.6rem;
+  }
+  .signup-link p {
+    font-size: 0.8rem;
+  }
+  .toggle-box .toggle-status {
+    font-size: 0.75rem;
+  }
 }

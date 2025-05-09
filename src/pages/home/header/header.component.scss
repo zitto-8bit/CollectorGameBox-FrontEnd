@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 .header {
   background-color: #121212; // fundo escuro
@@ -38,8 +38,8 @@
     }
 
     h1 {
-      font-family: 'Press Start 2P', cursive;
-      font-size: 1.50rem;
+      font-family: "Press Start 2P", cursive;
+      font-size: 1.5rem;
       font-weight: bold;
       margin: 0;
       color: #ffffff;
@@ -74,7 +74,7 @@
     gap: 10px;
 
     span {
-      font-family: 'Press Start 2P', cursive;
+      font-family: "Press Start 2P", cursive;
       font-size: 12px;
       font-weight: bold;
     }
@@ -84,10 +84,59 @@
       height: auto;
       object-fit: contain;
       cursor: pointer;
-  
+
       &:hover {
-          transform: translateY(-2.5px);
+        transform: translateY(-2.5px);
       }
-    }  
+    }
   }
+
+  .sugira-jogo {
+    background-color: #ffcb77;
+    color: #1a1a1a !important;
+    padding: 0.6rem 1.2rem;
+    border-radius: 10px;
+    font-family: "Press Start 2P", cursive;
+    font-size: 0.75rem;
+    border: 2px solid #ffd5a5;
+    box-shadow: 0 0 8px #ffd5a5cc;
+    transition: all 0.3s ease;
+    position: relative;
+
+    &:hover {
+      background-color: #fce0b3;
+      box-shadow: 0 0 15px #ffcc88;
+      transform: scale(1.05);
+      color: #000 !important;
+    }
+
+    &:active {
+      transform: scale(0.95);
+    }
+  }
+
+  .admin {
+  background-color: #3da9fc;
+  color: #1a1a1a !important;
+  padding: 0.6rem 1.2rem;
+  border-radius: 10px;
+  font-family: "Press Start 2P", cursive;
+  font-size: 0.75rem;
+  border: 2px solid #72c6ff;
+  box-shadow: 0 0 8px #72c6ffcc;
+  transition: all 0.3s ease;
+  position: relative;
+
+  &:hover {
+    background-color: #61bfff;
+    box-shadow: 0 0 15px #a8dbff;
+    transform: scale(1.05);
+    color: #000 !important;
+  }
+
+  &:active {
+    transform: scale(0.95);
+  }
+}
+
 }

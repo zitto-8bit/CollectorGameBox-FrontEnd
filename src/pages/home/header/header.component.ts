@@ -25,6 +25,14 @@ export class HeaderComponent implements OnInit {
     this.usuario = this.authService.getUsuario();
   }
 
+  isAdmin(): boolean {
+    if(this.usuario) {
+      return this.authService.isAdmin();
+    }
+    
+    return false;
+  }
+
   somaUmAEsterEgg() {
     if(this.qntCliqueEsterEgg < 5) {
       this.qntCliqueEsterEgg++;

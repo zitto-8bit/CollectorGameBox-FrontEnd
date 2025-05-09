@@ -8,11 +8,13 @@
     </div>
     <nav class="header__nav">
         <a routerLink="/inicio" routerLinkActive="active">Início</a>
+        <a class="sugira-jogo" *ngIf="usuario" routerLink="/sugerir" routerLinkActive="active">Sugira um Jogo</a>
+        <a class="admin" *ngIf="isAdmin()" routerLink="/admin/jogos" routerLinkActive="active">Admin</a>
         <a *ngIf="!usuario" routerLink="/login" routerLinkActive="active">Login</a>
         <a *ngIf="!usuario" routerLink="/registro" routerLinkActive="active">Registrar</a>
         <div class="header__user" *ngIf="usuario">
             <img [routerLink]="['/perfil']" [src]="'data:image/png;base64,' + usuario.icone" class="header__user__icon-user" alt="Logo" />
-            <span>{{ usuario.nome!.split(' ')[0] }}</span>
+            <span>{{ usuario.nome!.split(' ')[0].slice(0, 20) }}</span>
         </div>
     </nav>
 </header>
