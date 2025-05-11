@@ -1,14 +1,15 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, ViewChild, } from '@angular/core';
 import { Router, RouterModule } from '@angular/router';
 import { UsuarioDTO } from '../../../interface/Usuario';
 import { AuthService } from '../../../service/auth.service';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../../service/usuario.service';
+import { HeaderComponent } from '../../home/header/header.component';
 
 @Component({
   selector: 'app-perfil',
-  imports: [RouterModule, CommonModule, FormsModule],
+  imports: [RouterModule, CommonModule, FormsModule, HeaderComponent],
   templateUrl: './perfil.component.html',
   styleUrl: './perfil.component.scss'
 })
@@ -38,7 +39,8 @@ export class PerfilComponent {
 
   constructor(private authService:AuthService, 
               private usuarioService:UsuarioService,
-              private router: Router) {
+              private router: Router,
+              private location: Location) {
     this.usuario = this.authService.getUsuario();
 
     this.alteracaoUsuario = {
@@ -78,6 +80,7 @@ export class PerfilComponent {
     this.usuarioService.atualizar(this.alteracaoUsuario).subscribe({
       next: (usuarioAtualizado: UsuarioDTO) => {
         this.authService.updateUsuarioSession(usuarioAtualizado);
+        this.location.back();
       }, error: (res) => {
         console.log(res);
         this.router.navigate(['/login']);
@@ -120,4 +123,7 @@ export class PerfilComponent {
     this.authService.logout();
   }
 
+  voltar(): void {
+    this.location.back();
+  }
 }

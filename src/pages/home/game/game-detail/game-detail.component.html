@@ -156,7 +156,7 @@
     <div class="comentarios-laterais" [@fadeInOut] [@slideInOut] *ngIf="existeComentarios().length">
         <h2 class="titulo-comentarios">Comentários</h2>
         <div class="comentarios-lista">
-            <div class="comentario-publico" *ngFor="let comentario of usuariosJogo | slice:0:5">
+            <div class="comentario-publico" *ngFor="let comentario of usuariosJogo | slice:0:4">
                 <img *ngIf="comentario.comentario" class="avatar-publico" [src]="'data:image/jpeg;base64,' + comentario.usuarioDto.icone" alt="Avatar"
                     (click)="togglePopover(comentario, $event)"
                     [class.avatar-selecionado]="comentario.usuarioDto.id === usuarioSelecionado?.usuarioDto?.id"
@@ -165,7 +165,7 @@
                 <div *ngIf="comentario.comentario" class="comentario-publico-conteudo">
                     <div class="comentario-nome-nota">
                         <p class="nome-publico">
-                            {{comentario.usuarioDto.nome!.split(' ')[0].slice(0, 10)}}<span *ngIf="comentario.usuarioDto.nome!.split(' ')[0].length > 10">...</span>
+                            {{comentario.usuarioDto.nome!.split(' ')[0].slice(0, 9)}}<span *ngIf="comentario.usuarioDto.nome!.split(' ')[0].length > 10">...</span>
                         </p>
 
                         <div class="game-rating">

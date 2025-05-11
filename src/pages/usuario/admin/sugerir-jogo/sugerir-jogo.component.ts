@@ -1,4 +1,4 @@
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators, FormArray, ReactiveFormsModule } from '@angular/forms';
 import { HeaderComponent } from '../../../home/header/header.component';
@@ -40,7 +40,10 @@ export class SugerirJogoComponent {
     'Mobile (iOS/Android)',
   ];  
 
-  constructor(private fb: FormBuilder, private categoriaService: CategoriaService, private gameService: GameService) {
+  constructor(private fb: FormBuilder, 
+              private categoriaService: CategoriaService, 
+              private gameService: GameService,
+              private location: Location) {
     this.jogoForm = this.fb.group({
       name: ['', Validators.required],
       plataform: ['', Validators.required],
@@ -134,6 +137,10 @@ export class SugerirJogoComponent {
   alternarAdulto(): void {
     const atual = this.jogoForm.get('adult')?.value;
     this.jogoForm.get('adult')?.setValue(atual === true ? false : true);
+  }
+
+  voltar(): void {
+    this.location.back();
   }
 
 }
