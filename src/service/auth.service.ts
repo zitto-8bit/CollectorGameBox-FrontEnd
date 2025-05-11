@@ -5,16 +5,18 @@ import { Router } from '@angular/router';
 import { tap } from 'rxjs';
 import { LoginDTO, UsuarioDTO } from '../interface/Usuario';
 import { environment } from '../environments/environment.development';
+import { AcessibilidadeService } from './acessibilidade.service';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
 
-  constructor(private http: HttpClient, private router: Router) {}
+  constructor(private http: HttpClient, private router: Router, private acessibilidadeService: AcessibilidadeService) {}
 
   logar(dadosLogin: LoginDTO) {
     let url = environment.baseUrl + "/usuario/logar";
     return this.http.post<UsuarioDTO>(url, dadosLogin).pipe(
       tap((res) => {
+        this.acessibilidadeService.aplicarEstiloSeNecessario(res);
         sessionStorage.setItem('usuario', JSON.stringify(res));
       })
     );;
@@ -58,6 +60,7 @@ export class AuthService {
   }
 
   updateUsuarioSession(usuario: UsuarioDTO) {
+    this.acessibilidadeService.aplicarEstiloSeNecessario(usuario);
     sessionStorage.setItem('usuario', JSON.stringify(usuario));
     this.router.navigate(['/inicio']);
   }

@@ -6,7 +6,8 @@
         <h2>PERFIL GAMER</h2>
 
         <div class="icon-user">
-            <img *ngIf="!selectedIcon" id="avatarPreview" class="preview" [src]="'data:image/png;base64,' + this.usuario!.icone" alt="Avatar escolhido">
+            <img *ngIf="!selectedIcon" id="avatarPreview" class="preview"
+                [src]="'data:image/png;base64,' + this.usuario!.icone" alt="Avatar escolhido">
             <img *ngIf="selectedIcon" id="avatarPreview" class="preview" [src]="selectedIcon" alt="Avatar escolhido">
         </div>
 
@@ -16,11 +17,25 @@
         </div>
 
         <input type="text" id="nome" maxlength="30" [(ngModel)]="alteracaoUsuario!.nome" placeholder="NOME DE GUERRA">
-        <textarea id="biografia" [(ngModel)]="alteracaoUsuario!.biografia" placeholder="BIOGRAFIA" maxlength="200" (input)="autoResize($event)">
+        <textarea id="biografia" [(ngModel)]="alteracaoUsuario!.biografia" placeholder="BIOGRAFIA" maxlength="200"
+            (input)="autoResize($event)">
         </textarea>
 
+        <div class="toggle-box" style="margin: 20px 0;">
+            <label for="acessibilidade">Acessibilidade</label>
+            <div class="switch" [class.checked]="alteracaoUsuario!.acessibilidade === 'S'"
+                (click)="alternarAcessibilidade()">
+                <div class="slider"></div>
+            </div>
+            <div class="toggle-status">
+                {{ alteracaoUsuario!.acessibilidade === 'S' ? 'Ligada' : 'Desligada' }}
+            </div>
+        </div>
+
+
         <div style="display: flex; flex-direction: row; justify-content: space-between;">
-            <button class="save-btn" style="background-color: #ff4d4d; color: #fff;" (click)="desconectar()">DESCONECTAR</button>
+            <button class="save-btn" style="background-color: #ff4d4d; color: #fff;"
+                (click)="desconectar()">DESCONECTAR</button>
             <button class="save-btn" (click)="salvarPerfil()">SALVAR PERFIL</button>
         </div>
     </div>

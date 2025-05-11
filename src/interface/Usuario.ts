@@ -18,5 +18,6 @@ export interface UsuarioDTO {
     biografia: string | null;
     icone: string | null;
     token: string;
+    acessibilidade: string;
     acesso: string;
 }

@@ -6,6 +6,7 @@ import { CommonModule, Location } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { UsuarioService } from '../../../service/usuario.service';
 import { HeaderComponent } from '../../home/header/header.component';
+import { AcessibilidadeService } from '../../../service/acessibilidade.service';
 
 @Component({
   selector: 'app-perfil',
@@ -40,7 +41,8 @@ export class PerfilComponent {
   constructor(private authService:AuthService, 
               private usuarioService:UsuarioService,
               private router: Router,
-              private location: Location) {
+              private location: Location,
+              private acessibilidadeService: AcessibilidadeService) {
     this.usuario = this.authService.getUsuario();
 
     this.alteracaoUsuario = {
@@ -50,6 +52,7 @@ export class PerfilComponent {
       icone: null,
       email: this.usuario!.email,
       token: this.usuario!.token,
+      acessibilidade: this.usuario!.acessibilidade,
       acesso: this.usuario!.acesso
     }
   }
@@ -125,5 +128,10 @@ export class PerfilComponent {
 
   voltar(): void {
     this.location.back();
+  }
+
+  alternarAcessibilidade(): void {
+    const atual = this.alteracaoUsuario!.acessibilidade;
+    this.alteracaoUsuario!.acessibilidade = atual === 'S' ? 'N' : 'S';
   }
 }
