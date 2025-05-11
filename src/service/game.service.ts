@@ -37,6 +37,11 @@ export class GameService {
     return this.http.get(url);
   }
 
+  reprovarJogo(id: number) {
+    let url = environment.baseUrl + "/game/reprovarJogo/" + id;
+    return this.http.get(url);
+  }
+
   sugerir(game: Game) {
     let url = environment.baseUrl + "/game/sugerirJogo";
     return this.http.post(url, game);

@@ -1,6 +1,6 @@
 <app-header></app-header>
 <div [@listStagger]="animacaoKey" class="admin-container">
-  <h2>Jogos Pendentes de Ativação</h2>
+  <h2>Jogos Pendentes de Aprovação</h2>
   <div *ngIf="games.length === 0">Nenhum jogo pendente.</div>
 
   <div *ngFor="let jogo of games" class="jogo-card">
@@ -20,7 +20,7 @@
 
       <div class="botoes">
         <button (click)="aprovarJogo(jogo)" class="aprovar">Aprovar</button>
-        <button class="reprovar">Reprovar</button>
+        <button (click)="reprovarJogo(jogo)" class="reprovar">Reprovar</button>
       </div>
     </div>
   </div>

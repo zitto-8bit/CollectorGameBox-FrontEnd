@@ -45,10 +45,17 @@ export class AdminGameApprovalComponent implements OnInit {
     if(jogo && jogo.id) {
       this.gameService.aprovarJogo(jogo.id).subscribe({
         next: () => {
-          console.log("Ok");
           this.buscarJogos();
-        }, error: (err) => {
-          console.log(err);
+        }
+      });
+    }
+  }
+
+  reprovarJogo(jogo: Game) {
+    if(jogo && jogo.id) {
+      this.gameService.reprovarJogo(jogo.id).subscribe({
+        next: () => {
+          this.buscarJogos();
         }
       });
     }

@@ -1,7 +1,7 @@
 <app-header></app-header>
 
 <div class="suggest-game">
-  <div class="form-card">
+  <div class="form-card" *ngIf="!enviado">
     <h1>
       <img src="/icon/game/icon-controle-jogado.png" class="icon" alt="icon" />
       Sugerir Novo Jogo
@@ -16,9 +16,8 @@
       <div class="form-group">
         <label>Imagem do Jogo</label>
         <div class="file-upload">
-          <label for="file-upload" 
-                 class="file-label" 
-                 [ngClass]="{'file-label-error': jogoForm.get('imageBase64')?.invalid && jogoForm.get('imageBase64')?.touched}">
+          <label for="file-upload" class="file-label"
+            [ngClass]="{'file-label-error': jogoForm.get('imageBase64')?.invalid && jogoForm.get('imageBase64')?.touched}">
             Escolher Arquivo
           </label>
           <input type="file" id="file-upload" accept="image/*" (change)="onImageSelected($event)" />
@@ -26,7 +25,7 @@
             <img [src]="imagePreview" alt="Preview" />
           </div>
         </div>
-      </div>     
+      </div>
 
       <div class="row">
         <div class="form-group half">
@@ -36,25 +35,20 @@
             <option *ngFor="let p of plataformasDisponiveis" [value]="p">{{ p }}</option>
           </select>
         </div>
-      
+
         <div class="form-group half">
           <label>Ano de Lançamento</label>
-          <input 
-            type="text" 
-            formControlName="release"
-            mask="0000"
-            placeholder="AAAA"
-            class="year-input"
-          />
+          <input type="text" formControlName="release" mask="0000" placeholder="AAAA" class="year-input" />
         </div>
-      </div>         
+      </div>
 
       <div class="form-group">
         <label>Sinopse</label>
-        <textarea style="resize: none !important;" placeholder="Ex: Um herói relutante precisa salvar um reino dominado por criaturas mágicas." 
-        formControlName="synopsis" [maxlength]="synopsisMaxLength" (input)="updateCharCount()"></textarea>
+        <textarea style="resize: none !important;"
+          placeholder="Ex: Um herói relutante precisa salvar um reino dominado por criaturas mágicas."
+          formControlName="synopsis" [maxlength]="synopsisMaxLength" (input)="updateCharCount()"></textarea>
         <div class="char-count">{{ synopsisLength }}/{{synopsisMaxLength}}</div>
-      </div>      
+      </div>
 
       <div class="input-box toggle-box" style="margin-top: 0;">
         <label>Jogo para maiores?</label>
@@ -72,18 +66,17 @@
         <label>Categorias</label>
         <div class="checkbox-group">
           <label *ngFor="let cat of categoriasDisponiveis">
-            <input type="checkbox" 
-                   [value]="cat"
-                   (change)="onCategoryChange($event, cat)" />
+            <input type="checkbox" [value]="cat" (change)="onCategoryChange($event, cat)" />
             {{ cat.name }}
           </label>
         </div>
-      </div>               
-      
-      <div *ngIf="jogoForm.get('categories')?.hasError('required') && jogoForm.get('categories')?.touched" class="error-message">
+      </div>
+
+      <div *ngIf="jogoForm.get('categories')?.hasError('required') && jogoForm.get('categories')?.touched"
+        class="error-message">
         Você deve selecionar pelo menos uma categoria.
-      </div>      
-      
+      </div>
+
       <div class="botoes">
         <div class="voltar" (click)="voltar()">
           <img src="/icon/icon-voltar.png" alt="Voltar">
@@ -95,5 +88,10 @@
         </div>
       </div>
     </form>
+  </div>
+  <div class="form-card" *ngIf="enviado">
+    <div class="msg-confirmacao">
+      <h3>{{msgEnviando}}<span *ngIf="msgEnviando == 'Enviando Sugestão'" class="pontos"></span></h3>
+    </div>
   </div>
 </div>

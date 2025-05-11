@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap");
 
 $vermelho-erro: #ff4d4d;
 
@@ -9,7 +9,7 @@ $vermelho-erro: #ff4d4d;
   display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   color: #fff;
 }
 
@@ -22,6 +22,43 @@ $vermelho-erro: #ff4d4d;
   box-shadow: 0 0 20px #38bdf8cc, 0 0 10px #0ea5e9cc;
   border: 4px solid #38bdf8;
   animation: float 2s ease-in-out infinite;
+
+  .msg-confirmacao {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #0f172a;
+    border: 1px solid #334155;
+    border-radius: 0.5rem;
+    padding: 1rem 2rem;
+    color: #f8fafc;
+    font-family: "Press Start 2P", monospace;
+    font-size: 0.75rem;
+    margin-top: 1rem;
+
+    .pontos::after {
+      content: "";
+      display: inline-block;
+      animation: animar-pontos 1.2s steps(4, end) infinite;
+      width: 1.2em;
+      text-align: left;
+    }
+  }
+
+  @keyframes animar-pontos {
+    0% {
+      content: "";
+    }
+    25% {
+      content: ".";
+    }
+    50% {
+      content: "..";
+    }
+    75% {
+      content: "...";
+    }
+  }
 }
 
 h1 {
@@ -62,7 +99,7 @@ input[type="file"] {
   border: 2px solid #38bdf8;
   padding: 12px;
   border-radius: 10px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   font-size: 0.8rem;
   text-align: center;
   transition: box-shadow 0.3s ease;
@@ -95,7 +132,7 @@ textarea {
   border: 2px solid #38bdf8;
   cursor: pointer;
   font-size: 0.75rem;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   transition: background 0.3s ease, transform 0.3s ease;
   display: flex;
   align-items: center;
@@ -166,20 +203,20 @@ textarea {
     width: 135px;
     cursor: pointer;
     transition: transform 0.3s ease;
-  
+
     &:hover {
       transform: translateX(-10px) scale(1.05);
     }
-  
+
     img {
       width: 56px;
     }
-  
+
     h3 {
       font-size: 12px;
     }
   }
-  
+
   .avancar {
     display: flex;
     align-items: center;
@@ -188,15 +225,15 @@ textarea {
     gap: 10px;
     transition: transform 0.3s ease;
     margin-right: 15px;
-  
+
     &:hover {
       transform: translateX(10px) scale(1.05);
     }
-  
+
     img {
       width: 56px;
     }
-  
+
     h3 {
       font-size: 12px;
     }
@@ -210,7 +247,7 @@ textarea {
   margin-top: 20px;
   margin-bottom: 35px;
 
-  .box  {
+  .box {
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -276,14 +313,14 @@ select {
   border: 2px solid #38bdf8;
   padding: 12px;
   border-radius: 10px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   font-size: 0.65rem;
   width: 100%;
   appearance: none;
   -webkit-appearance: none;
   -moz-appearance: none;
   position: relative;
-  background-image: url('/icon/icon-seta-para-baixo.png');
+  background-image: url("/icon/icon-seta-para-baixo.png");
   background-repeat: no-repeat;
   background-position: right 12px center;
   background-size: 14px;
@@ -303,7 +340,7 @@ select:focus {
   border: 2px solid #38bdf8;
   padding: 12px;
   border-radius: 10px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   font-size: 0.65rem;
   width: 100%;
   transition: box-shadow 0.3s ease;
@@ -353,7 +390,7 @@ select:focus {
   color: #0f172a;
   padding: 12px 16px;
   border-radius: 10px;
-  font-family: 'Press Start 2P', cursive;
+  font-family: "Press Start 2P", cursive;
   font-size: 0.75rem;
   cursor: pointer;
   text-align: center;
@@ -406,9 +443,15 @@ input[type="file"] {
 }
 
 @keyframes float {
-  0% { transform: translateY(0); }
-  50% { transform: translateY(-4px); }
-  100% { transform: translateY(0); }
+  0% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-4px);
+  }
+  100% {
+    transform: translateY(0);
+  }
 }
 
 input.ng-invalid.ng-touched,
@@ -420,7 +463,7 @@ select.ng-invalid.ng-touched {
 
 .error-message {
   color: $vermelho-erro;
-  font-size: 0.70rem;
+  font-size: 0.7rem;
   text-align: center;
   margin-top: 1rem;
 }

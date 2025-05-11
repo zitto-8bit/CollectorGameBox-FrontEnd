@@ -6,6 +6,7 @@ import { CategoriaService } from '../../../../service/categoria.service';
 import { NgxMaskDirective } from 'ngx-mask';
 import { GameService } from '../../../../service/game.service';
 import { Category, Game } from '../../../../interface/Game';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-sugerir-jogo',
@@ -19,6 +20,8 @@ export class SugerirJogoComponent {
   imagePreview: string | ArrayBuffer | null = null;
   synopsisLength: number = 0;
   synopsisMaxLength: number = 300;
+  enviado: boolean = false;
+  msgEnviando: string = 'Enviando Sugestão'
 
   categoriasDisponiveis: Category[] = [];
 
@@ -43,7 +46,8 @@ export class SugerirJogoComponent {
   constructor(private fb: FormBuilder, 
               private categoriaService: CategoriaService, 
               private gameService: GameService,
-              private location: Location) {
+              private location: Location,
+              private router: Router) {
     this.jogoForm = this.fb.group({
       name: ['', Validators.required],
       plataform: ['', Validators.required],
@@ -106,6 +110,8 @@ export class SugerirJogoComponent {
   }
   
   submit() {
+    this.enviado = true;
+
     if (this.jogoForm.get('categories')?.value.length === 0) {
       this.jogoForm.get('categories')?.setErrors({ 'required': true });
     }
@@ -116,14 +122,19 @@ export class SugerirJogoComponent {
       console.log(game);
       this.gameService.sugerir(game).subscribe({
         next: () => {
-          console.log("OK");
+          this.msgEnviando = 'Sua sugestão foi enviada!'
+          setTimeout(() => {
+            this.router.navigate(['/inicio']);
+          }, 3000);
         },
         error: (err) => {
-          console.log(err);
+          this.enviado = false;
         }
       });
     } else {
       this.jogoForm.markAllAsTouched();
+
+      this.enviado = false;
   
       setTimeout(() => {
         const firstInvalidControl: HTMLElement | null = document.querySelector(
